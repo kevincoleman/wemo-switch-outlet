@@ -1,0 +1,22 @@
+{
+  "name": "wemo-switch-outlet",
+  "version": "1.0.0",
+  "description": "Tying a wemo wireless light switch to a wemo wireless outlet switch",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kevincoleman/wemo-switch-outlet.git"
+  },
+  "author": "Kevin Coleman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevincoleman/wemo-switch-outlet/issues"
+  },
+  "homepage": "https://github.com/kevincoleman/wemo-switch-outlet#readme",
+  "dependencies": {
+    "wemo-client": "^0.6.6"
+  }
+}
