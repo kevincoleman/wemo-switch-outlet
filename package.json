@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kevincoleman/wemo-switch-outlet#readme",
   "dependencies": {
+    "async": "^2.0.0-rc.3",
     "wemo-client": "^0.6.6"
   }
 }
