@@ -12,29 +12,29 @@ async.waterfall([
     function clientCheck(){
       setTimeout(function(){
         if (
-          (typeof lightSwitchClient !== 'undefined') &&
-          (typeof outletSwitchClient !== 'undefined')
+          (typeof this.lightSwitchClient !== 'undefined') &&
+          (typeof this.outletSwitchClient !== 'undefined')
         ) {
-          callback(null, [lightSwitchClient, outletSwitchClient]);
+          callback(null, [this.lightSwitchClient, this.outletSwitchClient]);
         } else {
           console.log("Failed to find device(s). Retrying...");
           wemo.discover(foundDevice);
         }
       }, 3000);
-    };
+    }.bind(this);
     
     function foundDevice(device) {
       if(device.friendlyName === lightSwitchName) {
         console.log(lightSwitchName + " found.");
-        var lightSwitchClient = this.client(device);
+        this.lightSwitchClient = this.client(device);
         clientCheck();
       }
       if(device.friendlyName === outletSwitchName) {
         console.log(outletSwitchName + " found.");
-        var outletSwitchClient = this.client(device);
+        this.outletSwitchClient = this.client(device);
         clientCheck();
       }
-    };
+    }.bind(this);
     
     wemo.discover(foundDevice);
     
