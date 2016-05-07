@@ -9,7 +9,7 @@ var wemo               = new Wemo();
 async.waterfall([
   function(callback){
   
-    var clientCheck = function {
+    var clientCheck = function() {
       setTimeout(function(){
         if (
           (typeof this.lightSwitchClient !== 'undefined') &&
