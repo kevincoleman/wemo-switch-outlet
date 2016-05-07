@@ -27,12 +27,12 @@ async.waterfall([
       if(device.friendlyName === lightSwitchName) {
         console.log(lightSwitchName + " found.");
         this.lightSwitchClient = this.client(device);
-        clientCheck();
+        this.clientCheck();
       }
       if(device.friendlyName === outletSwitchName) {
         console.log(outletSwitchName + " found.");
         this.outletSwitchClient = this.client(device);
-        clientCheck();
+        this.clientCheck();
       }
     }.bind(this);
     
