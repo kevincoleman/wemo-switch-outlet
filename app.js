@@ -9,7 +9,7 @@ var wemo               = new Wemo();
 async.waterfall([
   function(callback){
   
-    function clientCheck(){
+    var clientCheck = function {
       setTimeout(function(){
         if (
           (typeof this.lightSwitchClient !== 'undefined') &&
@@ -23,7 +23,7 @@ async.waterfall([
       }, 3000);
     }.bind(this);
     
-    function foundDevice(device) {
+    var foundDevice = function(device) {
       if(device.friendlyName === lightSwitchName) {
         console.log(lightSwitchName + " found.");
         this.lightSwitchClient = this.client(device);
