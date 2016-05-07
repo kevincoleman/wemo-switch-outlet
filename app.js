@@ -6,16 +6,10 @@ var outletSwitchName   = "Front Porch";
 var wemo               = new Wemo();
 
 
-
 async.waterfall([
   function(callback){
-    function foundDevice(device) {
-      if(device.friendlyName === lightSwitchName) {
-        var lightSwitchClient = this.client(device);
-      }
-      if(device.friendlyName === outletSwitchName) {
-        var outletSwitchClient = this.client(device);
-      }
+  
+    function clientCheck(){
       setTimeout(function(){
         if (
           (typeof lightSwitchClient !== 'undefined') &&
@@ -28,9 +22,25 @@ async.waterfall([
         }
       }, 3000);
     };
+    
+    function foundDevice(device) {
+      if(device.friendlyName === lightSwitchName) {
+        console.log(lightSwitchName + " found.");
+        var lightSwitchClient = this.client(device);
+        clientCheck();
+      }
+      if(device.friendlyName === outletSwitchName) {
+        console.log(outletSwitchName + " found.");
+        var outletSwitchClient = this.client(device);
+        clientCheck();
+      }
+    };
+    
     wemo.discover(foundDevice);
+    
   },
   function(clients, callback){
+  
     var lightSwitchClient = clients[0];
     var outletSwitchClient = clients[1];
     
@@ -40,10 +50,7 @@ async.waterfall([
     outletSwitchClient.on('binaryState', function(value) {
       lightSwitchClient.setBinaryState(value);
     });
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Switch and Outlet Linked. Go play outside.');
-    }
+    
+    console.log('Switch and Outlet Linked. Go play outside.');
   }
 ]);
